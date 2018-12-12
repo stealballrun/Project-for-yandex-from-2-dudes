@@ -1,0 +1,43 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
+from PyQt5.QtWidgets import QLCDNumber, QLabel, QLineEdit
+ 
+ 
+class Example(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+ 
+    def initUI(self):
+        self.setGeometry(400, 400, 400, 400)
+        self.setWindowTitle('Кавальский анализ')
+ 
+        self.btn = QPushButton('Начать обработку', self)
+        self.btn.resize(self.btn.sizeHint())
+        self.btn.move(125, 300)
+        self.btn.clicked.connect(self.getfileforrealmen)
+ 
+ 
+        self.name_label = QLabel(self)
+        self.name_label.setText("Введите название файла: ")
+        self.name_label.move(10, 90)
+ 
+        self.name_input = QLineEdit(self)
+        self.name_input.move(200, 80)
+ 
+    def getfileforrealmen(self):
+        name = self.name_input.text()
+        filethatweneed = open('text.txt', 'w')
+        filethatweneed.write(name)
+        filethatwneed.close()        
+ 
+ 
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = Example()
+    ex.show()
+    sys.exit(app.exec())
+
+ 
+
+
