@@ -1,0 +1,45 @@
+import sys
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QWidget, QApplication, QPushButton
+import PyQt5.QtGui as QtGui
+ 
+k = "" 
+class Example(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+ 
+    def initUI(self):
+        self.setGeometry(400, 400, 400, 400)
+        self.setWindowTitle('Вход для настоящих мужзчин и леди')
+ 
+        self.button_1 = QPushButton(self)
+        self.button_1.move(60, 200)
+        self.button_1.setText("Ваши веса")
+        self.button_1.clicked.connect(self.run)
+ 
+        self.button_2 = QPushButton(self)
+        self.button_2.move(150, 200)
+        self.button_2.setText("Авторские веса")
+        self.button_2.clicked.connect(self.run)
+        
+        self.button_3 = QPushButton(self)
+        self.button_3.move(275, 200)
+        self.button_3.setText("Обучить")
+        self.button_3.clicked.connect(self.run)
+ 
+        self.show()
+ 
+    def run(self):
+        return self.sender().text()
+ 
+ 
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = Example()
+    ex.show()
+    sys.exit(app.exec())
+
+k = run()
+print(k)
+
