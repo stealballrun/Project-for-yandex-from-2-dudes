@@ -1,0 +1,5 @@
+from PIL import Image
+img_1 = Image.open('picture.jpg')
+img_2 = Image.open('mask.jpg')
+img_1.show()
+img_2.show()
