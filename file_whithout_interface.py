@@ -28,8 +28,8 @@ f = open('name.txt', 'r')
 k = f.read()
 process = int(k[0])
 NAME = k[2:]
-print(NAME, 'qwerty')
 f.close()
+print(NAME)
 
 
 
@@ -40,7 +40,7 @@ def rle_decode(mask_rle, shape=(1280, 1918, 1)):
     shape: (height,width) of array to return 
     Returns numpy array, 1 - mask, 0 - background
     '''
-    img = np.zeros(shape[0]*shape[1], dtype=np.uint8)
+    img = np.zeros(shape[0] * shape[1], dtype=np.uint8)
 
     s = mask_rle.split()
     starts, lengths = [np.asarray(x, dtype=int) for x in (s[0:][::2], s[1:][::2])]
@@ -60,7 +60,7 @@ def keras_generator(gen_df, batch_size):
         
         for i in range(batch_size):
             img_name, mask_rle = gen_df.sample(1).values[0]
-            img = cv2.imread('data/train/{}'.format(img_name))
+            img = cv2.imread('data/data/train/{}'.format(img_name))
             mask = rle_decode(mask_rle)
             
             img = cv2.resize(img, (256, 256))
@@ -78,7 +78,7 @@ def keras_generator(gen_df, batch_size):
         
         
 #1
-df = pd.read_csv('data/train_masks.csv')
+df = pd.read_csv('data/data/train_masks.csv')
 train_df = df[:4000]
 val_df = df[4000:]
 
@@ -204,7 +204,7 @@ if process==3:
     
     adam = keras.optimizers.Adam(lr=0.0001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
     
-    model.compile(loss='binary_crossentropy',optimizer=adam, metrics=["accuracy"])
+    model.compile(loss='binary_crossentropy', optimizer=adam, metrics=["accuracy"])
     
     
     
@@ -290,4 +290,4 @@ if process == 1:
     fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(25, 25))
     axes[0].imshow(this_picture)
     axes[1].imshow(this_mask)
-    plt.show()    
+    plt.show()  
